@@ -15,6 +15,12 @@ public class FluxAndMonoGeneratorService {
         return Mono.just("alex");
     }
 
+    public Flux<String> nameFlux_map(){
+
+        return Flux.fromIterable(List.of("alex","ben","chloe"))
+                .map(String::toUpperCase);
+    }
+
     public static void main(String[] args) {
 
         FluxAndMonoGeneratorService fluxAndMonoGeneratorService = new FluxAndMonoGeneratorService();
@@ -27,6 +33,11 @@ public class FluxAndMonoGeneratorService {
         fluxAndMonoGeneratorService.nameMono()
                 .subscribe(name ->
                         System.out.println("Mono name is :" +name)
+                );
+
+        fluxAndMonoGeneratorService.nameFlux_map()
+                .subscribe(name ->
+                        System.out.println("Name using map : "+name)
                 );
 
     }
